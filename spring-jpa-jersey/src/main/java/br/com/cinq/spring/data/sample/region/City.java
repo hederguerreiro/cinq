@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -19,20 +19,19 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class City {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Size(max = 40)
 	private String name;
-	@OneToOne
-	@JoinColumn(name="country_id")
+	@ManyToOne
+	@JoinColumn(name = "country_id")
 	private Country country;
-	
+
 	public City(String name, Country country) {
 		this.name = name;
 		this.country = country;
 	}
-	
-	
+
 }

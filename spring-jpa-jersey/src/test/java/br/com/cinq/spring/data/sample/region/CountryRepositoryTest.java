@@ -2,6 +2,8 @@ package br.com.cinq.spring.data.sample.region;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.Test;
@@ -26,20 +28,26 @@ public class CountryRepositoryTest {
 		}
 	}
 
+	@Transactional(readOnly = true)
 	@Test
 	public void testGelAllCountries() {
-//		Assert.assertNotNull(countryRepository);
-//		long count = countryRepository.count();
-//		Assert.assertTrue(count > 0);
-//		List<Country> countries = countryRepository.findAll();
-//		Assert.assertEquals((int) count, countries.size());
+		assertNotNull(countryRepository);
+		Country country = new Country();
+		country.setId(3); // Should be France
+		try (Stream<Country> countries = countryRepository.findAll().stream()) {
+			List<Country> list = countries.collect(Collectors.toList());
+			assertNotNull(list);
+		}
 	}
 
+	@Transactional(readOnly = true)
 	@Test
 	public void testFindOneCountry() {
-//		Assert.assertNotNull(countryRepository);
-//		List<Country> countries = countryRepository.findLikeName("Fra");
-//		Assert.assertEquals(1, countries.size());
+		assertNotNull(countryRepository);
+		try (Stream<Country> countries = countryRepository.findLikeName("Fra")) {
+			List<Country> list = countries.collect(Collectors.toList());
+			assertNotNull(list);
+		}
 	}
 
 }

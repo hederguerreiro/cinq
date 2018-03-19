@@ -20,7 +20,7 @@ public class Country {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long Id;
+	private long id;
 	@Size(max = 40)
 	private String name;
 	

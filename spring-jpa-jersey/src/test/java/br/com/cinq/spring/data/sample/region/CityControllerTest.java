@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestPropertySource(locations = "classpath:application-integrationtest.properties")
 public class CityControllerTest {
 
 	@Autowired
@@ -29,7 +31,7 @@ public class CityControllerTest {
 	@Transactional(readOnly = true)
 	@Test
 	public void whenFindAllByCountry_ThenShouldShowCitiesList() throws Exception {
-		mockMvc.perform(get("/rest/cities").param("country", "Uni").contentType(MediaType.APPLICATION_JSON))
+		mockMvc.perform(get("/rest/cities").param("country", "Uni").contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(status().isOk()).andExpect(jsonPath("$[0].name", notNullValue()));
 	}
 

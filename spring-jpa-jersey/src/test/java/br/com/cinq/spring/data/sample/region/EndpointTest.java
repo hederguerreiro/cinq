@@ -1,61 +1,47 @@
 package br.com.cinq.spring.data.sample.region;
 
+import static org.junit.Assert.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import junit.framework.Assert;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SuppressWarnings("deprecation")
 @RunWith(SpringRunner.class)
+@AutoConfigureMockMvc
 @SpringBootTest
+@TestPropertySource(locations = "classpath:application-integrationtest.properties")
 public class EndpointTest {
 
-	Logger logger = LoggerFactory.getLogger(EndpointTest.class);
+	@Autowired
+	CityController cityController;
 
-	private final String localhost = "http://localhost:";
-
-	@LocalServerPort
-	private int port;
-
-	private TestRestTemplate restTemplate = new TestRestTemplate();
+	@Autowired
+	private MockMvc mockMvc;
 
 	@Transactional(readOnly = true)
 	@Test
-	public void testGetCities() throws InterruptedException {
-		String country = "France";
-
-		HttpHeaders headers = new org.springframework.http.HttpHeaders();
-		headers.add(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
-
-		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(this.localhost + this.port + "/rest/cities/")
-				.queryParam("country", country);
-
-		HttpEntity<?> entity = new HttpEntity<>(headers);
-
-		ResponseEntity<City[]> response = this.restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET,
-				entity, City[].class);
-
-		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
-
-		Thread.sleep(2000L);
-
-		City[] cities = response.getBody();
-
-		Assert.assertEquals(2, cities.length);
-
+	public void testGetCities() throws UnsupportedEncodingException, Exception {
+		final String country = "France";
+		String result = mockMvc
+				.perform(get("/rest/cities").param("country", country).contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+		List<City> cities = new ObjectMapper().readValue(result, new TypeReference<List<City>>() {
+		});
+		assertEquals(2, cities.size());
 	}
 }
