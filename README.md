@@ -26,7 +26,7 @@ The candidate must:
 execute using curl: 
 curl -i -X POST -H "Content-Type: multipart/form-data" -F "file=@your_file.csv" http://localhost:8090/rest/data/upload/
 
-Inside /src/main/resources there's a file with name "regions.csv" to use as default CSV file test.
+Inside /src/main/resources there's a file named by "regions.csv" to use as default CSV file test.
 
 execute using curl:
 curl -i -X POST -H "Content-Type: multipart/form-data" -F "file=@regions.csv" http://localhost:8090/rest/data/upload/
@@ -41,7 +41,7 @@ After the implementation, the application should run after the following command
 
 	java -jar target/spring-jpa-jersey.jar **OK**
 
-Use:java -jar target/spring-jpa-jersey-0.0.1-SNAPSHOT.jar
+Use: java -jar target/spring-jpa-jersey-0.0.1-SNAPSHOT.jar
 
 or 
 
@@ -88,7 +88,7 @@ It must return, at least the following (ids may vary) :
 # Unit tests
 
 Included you will find JUnit tests, with commented lines. Those tests must run after the lines
-are uncommented. ** IT WAS USED TDD, SO UNIT TESTS AND INTEGRATION TESTS WAS MADE [WITH MODIFICATIONS TO ATTEMPT UPGRADED FRAMEWORKS USED] - OK **  
+are uncommented. ** IT WAS USED TDD, SO UNIT TESTS AND INTEGRATION TESTS WAS MADE [WITH MODIFICATIONS TO ATTEND UPGRADED SPRING FRAMEWORKS USED IN THIS PROJECT] - OK **  
 
 ## Challenge
 
@@ -98,5 +98,5 @@ Post the percentage of line covered by tests of your application.
 
 ** PLUS: It would be great if you can come up with unit and integration tests separately in their appropriate building phases.
 
-** I CREATED AN application-integrationtest.properties and was used in some tests with @TestPropertySource(locations = "classpath:application-integrationtest.properties") **
-** this could also be improved - OK ** 
+** I CREATED an application-integrationtest.properties and was used in some tests with @TestPropertySource(locations = "classpath:application-integrationtest.properties") **
+** this could also be improved for futures proposals - OK ** 
