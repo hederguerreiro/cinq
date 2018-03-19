@@ -1,6 +1,5 @@
 package br.com.cinq.spring.data.sample.region;
 
-import static org.assertj.core.api.Assertions.fail;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.stream.Stream;
@@ -25,10 +24,6 @@ public class CityRepositoryTest {
 		try (Stream<City> cities = cityRepository.findAllByCountryName("Brazil")) {
 			cities.forEach(city -> assertNotNull(city.getName()));
 		}
-	}
-	
-	public void whenUploadCities_thenVerifyIfItAllLoaded() {
-		fail("Not implemented");
 	}
 
 }
