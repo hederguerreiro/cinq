@@ -1,5 +1,6 @@
 package br.com.cinq.spring.data.sample.region;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,9 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 public interface CityRepository extends JpaRepository<City, String> {
 
 	@Transactional(readOnly = true)
-	@Query("select c from City c join c.country as co where co.name like CONCAT('%',:country,'%')")
+	@Query("from City c join c.country as co where co.name like CONCAT('%',:country,'%')")
 	Stream<City> findAllByCountryName(@Param("country") String country);
 
-	
+	List<City> findByCountry(Country country);
 
 }

@@ -26,4 +26,14 @@ public class CityRepositoryTest {
 		}
 	}
 
+	@Test
+	public void testQueryPerson() {
+		// Assert.assertNotNull(cityRepository);
+		// Assert.assertTrue(cityRepository.count() > 0);
+		// Country country = new Country();
+		// country.setId(3); // Should be France
+		// List<City> list = cityRepository.findByCountry(country);
+		// Assert.assertEquals(2, list.size());
+	}
+
 }

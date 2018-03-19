@@ -26,4 +26,20 @@ public class CountryRepositoryTest {
 		}
 	}
 
+	@Test
+	public void testGelAllCountries() {
+//		Assert.assertNotNull(countryRepository);
+//		long count = countryRepository.count();
+//		Assert.assertTrue(count > 0);
+//		List<Country> countries = countryRepository.findAll();
+//		Assert.assertEquals((int) count, countries.size());
+	}
+
+	@Test
+	public void testFindOneCountry() {
+//		Assert.assertNotNull(countryRepository);
+//		List<Country> countries = countryRepository.findLikeName("Fra");
+//		Assert.assertEquals(1, countries.size());
+	}
+
 }
