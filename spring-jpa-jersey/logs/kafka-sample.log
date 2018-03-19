@@ -582,3 +582,7 @@ org.springframework.web.multipart.MultipartException: Current request is not a m
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
+2018-03-19 17:50:17,311 [main] INFO  b.c.c.s.d.s.SpringJpaJerseyApplication - Starting SpringJpaJerseyApplication on DESKTOP-3F98CJ5 with PID 11900 (C:\Users\Heder\Documents\GitHub\cinq\spring-jpa-jersey\target\classes started by Heder in C:\Users\Heder\Documents\GitHub\cinq\spring-jpa-jersey)
+2018-03-19 17:50:17,322 [main] INFO  b.c.c.s.d.s.SpringJpaJerseyApplication - No active profile set, falling back to default profiles: default
+2018-03-19 17:50:21,362 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-03-19 17:50:21,823 [main] INFO  b.c.c.s.d.s.SpringJpaJerseyApplication - Started SpringJpaJerseyApplication in 4.889 seconds (JVM running for 6.091)
